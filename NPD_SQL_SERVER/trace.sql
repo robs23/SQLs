@@ -1,0 +1,4 @@
+SELECT z.zfinIndex, b.batchNumber, qr.qType as documentType, qr.qDate as shipmentDate, o.sapId as zfinOrder, MIN(od.plMoment) as productionStart, MAX(od.plMoment) as productionStops, SUM(qd.batchSize) as sumOfBatch, o1.sapId as zforOrder
+FROM tbZfin z LEFT JOIN tbBatch b ON b.zfinId = z.zfinId LEFT JOIN tbQdocData qd ON qd.batchId=b.batchId LEFT JOIN tbQdocReconciliation qr ON qr.qReconciliationId=qd.qReconciliationId LEFT JOIN tbOrders o ON o.batchId=b.batchId LEFT JOIN tbOperations op ON op.orderId=o.orderId LEFT JOIN tbOperationData od ON od.operationId=op.operationId LEFT JOIN tbOrderDep odep ON odep.zfinOrder=o.orderId LEFT JOIN tbOrders o1 ON o1.orderId=odep.zforOrder
+WHERE b.batchNumber IN (7003272586)
+GROUP BY z.zfinIndex, b.batchNumber, qr.qType, qr.qDate, o.sapId, o1.sapId

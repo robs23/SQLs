@@ -1,0 +1,2 @@
+SELECT SUM(qd.batchSize) FROM tbQdocData qd INNER JOIN tbQdocReconciliation qr on qr.qReconciliationId=qd.qReconciliationId INNER JOIN tbBatch b ON b.batchId=qd.batchId INNER JOIN tbUom u1 ON u1.zfinId=b.zfinId 
+WHERE qr.qType='WHD_PW' AND b.batchNumber=7003464498
