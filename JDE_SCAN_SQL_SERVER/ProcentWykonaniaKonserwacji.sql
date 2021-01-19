@@ -6,3 +6,4 @@ FROM JDE_Processes p
 	LEFT JOIN JDE_ProcessActions pa ON pa.ProcessId = p.ProcessId
 WHERE YEAR(p.PlannedFinish) >=2020 AND DATEPART(ISO_WEEK, p.PlannedFinish) >=3 AND p.PlannedStart IS NOT NULL
 GROUP BY DATEPART(ISO_WEEK, p.PlannedFinish), YEAR(p.PlannedFinish)
+ORDER BY Rok, Tydzieñ
